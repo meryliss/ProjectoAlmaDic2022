@@ -15,3 +15,7 @@
 ### Via WebSocket
 #### When using this approach instruments are given in a dictionary in which the keys are the Rofex tickers for the underlyers and the values are the Rofex futures to be tested. In this case, it is necessary to establish a time lapse in which we can to keep the code running before closing WebSocket connection (i.e. receiving messages with market data changes).
 #### Initially, WebSocket connection is established and the system receives messages when there are changes in the specified intruments (both futures and underlyings). Messages are precesaed and information related to the corresponding underlying/future is requested (i.e. if there is a change in underlyer price there is an additinal request for informating regarding the future). Implied rates are calulated and tested for arbitrage opportunities. 
+### Implied Rate Calculation
+#### For calculating the implied rate we considered the annualized compounded implied rate given by the following formula:
+![image](https://user-images.githubusercontent.com/31631513/208755525-818fb14a-40ab-4d5e-b19d-8476d9b2fb58.png)
+#### Where the Future price is the price corresponding to bid/ask of Future, the spot price is the price of the underlying and tte is the time to expiry of the future contract in fraction of years.
