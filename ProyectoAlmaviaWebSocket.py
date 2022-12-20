@@ -16,6 +16,8 @@ import sys
 #Key is the ROFEX Ticker of the underlying instrument
 #Value is the ROFEX ticker of the future contract to be tested
 
+
+#-----------------------Parameters to be changed--------------
 instruments = {"MERV - XMEV - YPFD - 48hs":"YPFD/FEB23",
                "MERV - XMEV - GGAL - 48hs":"GGAL/FEB23",
                "MERV - XMEV - PAMP - 48hs":"PAMP/FEB23",
@@ -27,8 +29,8 @@ remarkets_password = "objxhQ1#"
 remarkets_account = "REM7682" 
     
 #Time to keep code running in seconds
-keep_code_running = 120
-
+keep_code_running = 240
+#-----------------------Functions used within the code---------
 class Implied_rates:
     def __init__(self, fut_price, spot_price,currency, tte):
         #Object that contains the impormation for calculating implied rate

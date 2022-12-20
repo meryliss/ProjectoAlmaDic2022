@@ -19,13 +19,17 @@ import sys
 #Key is the Yahoo Finance Ticker
 #Value is the ROFEX ticker of the future contract to be tested
 
-instruments = {"PAMP.BA" : "PAMP/FEB23"}
+
+#-----------------------Parameters to be changed--------------
+instruments = {"YPFD.BA" : "YPFD/FEB23","GGAL.BA" : "GGAL/FEB23",
+               "PAMP.BA" : "PAMP/FEB23","ARS=X" : "DLR/FEB23",}
     
 #Remarkets account credentials
 remarkets_user = "mhlissarrague7682"
 remarkets_password = "objxhQ1#"
 remarkets_account = "REM7682"    
-       
+
+#-----------------------Functions used within the code---------   
 class Implied_rates:
     def __init__(self, fut_price, spot_price, currency,tte):
         #Object that contains the impormation for calculating implied rate
@@ -71,7 +75,6 @@ if __name__ == '__main__' :
     for i,j in instruments.items():
         
         fut_info = pr.get_market_data(ticker = j)
-        
 
         mat_date = datetime.datetime.strptime(pr.get_instrument_details(ticker = j)
                                         ["instrument"]["maturityDate"], "%Y%m%d").date()
@@ -84,15 +87,22 @@ if __name__ == '__main__' :
             stock_info = yf.Ticker(i)
          
             stock_price_init = stock_info.info['regularMarketPrice']
+            
+            if stock_price_init == None:
+                print("No initial spot price value for " + i)
         
-            data = {"FutName" : j, "FutBidPrice" :fut_price_bid_init, "FutAskPrice" :fut_price_ask_init,
+
+        except:
+            print("No available initial bid/ask for " + j)
+            
+            fut_price_bid_init = None
+            
+            fut_price_ask_init = None
+        
+        data = {"FutName" : j, "FutBidPrice" :fut_price_bid_init, "FutAskPrice" :fut_price_ask_init,
                 "MatDate" : mat_date,"StockPrice" : stock_price_init }
             
-            instrument_info[ i ] = data
-        except:
-            print("No available initial data for " + j)
-            
-            sys.exit()
+        instrument_info[ i ] = data
 
     print(instrument_info)
 
