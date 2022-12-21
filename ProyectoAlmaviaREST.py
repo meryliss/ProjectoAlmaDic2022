@@ -83,21 +83,20 @@ if __name__ == '__main__' :
             fut_price_bid_init = fut_info["marketData"]["BI"][0]["price"]
         
             fut_price_ask_init = fut_info["marketData"]["OF"][0]["price"]
-            
-            stock_info = yf.Ticker(i)
-         
-            stock_price_init = stock_info.info['regularMarketPrice']
-            
-            if stock_price_init == None:
-                print("No initial spot price value for " + i)
-        
-
         except:
             print("No available initial bid/ask for " + j)
             
             fut_price_bid_init = None
             
             fut_price_ask_init = None
+            
+        stock_info = yf.Ticker(i)
+         
+        stock_price_init = stock_info.info['regularMarketPrice']
+            
+        if stock_price_init == None:
+            print("No initial spot price value for " + i)
+
         
         data = {"FutName" : j, "FutBidPrice" :fut_price_bid_init, "FutAskPrice" :fut_price_ask_init,
                 "MatDate" : mat_date,"StockPrice" : stock_price_init }
