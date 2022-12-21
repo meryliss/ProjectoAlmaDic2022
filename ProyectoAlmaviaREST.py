@@ -141,7 +141,7 @@ if __name__ == '__main__' :
                         
                         imp_rate_ask = Implied_rates(fut_price_ask, stock_price_curr, "ARS", tte).calc_rate()
             
-                        print (i + " Spot Price Change")
+                        print (i + " Price Change")
                         print ("Bid Implied Rate: " + str (round(imp_rate_bid*100,3)) + " %")
                         print ("Ask Implied Rate: " + str (round(imp_rate_ask*100,3)) + " %")
                         
@@ -163,7 +163,10 @@ if __name__ == '__main__' :
                     else:
                         pass 
             except:
-                pass
+                if KeyboardInterrupt():
+                    sys.exit()
+                else:
+                    pass 
             
             print(".")
             
