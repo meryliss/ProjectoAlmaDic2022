@@ -163,10 +163,7 @@ if __name__ == '__main__' :
                     else:
                         pass 
             except:
-                if KeyboardInterrupt():
-                    sys.exit()
-                else:
-                    pass
+                pass
             
             print(".")
             
