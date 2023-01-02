@@ -39,7 +39,6 @@ class Implied_rates:
         #Parameters
         #fut_price : Price of the future intrument (float)
         #spo_price : Spot price of the underlying (float)
-        #currency : currency in which both spot and future price is given (str)
         #tte : Time to expiry of the future instrument in fraction of years (float)
         self.future_price = fut_price
         self.spot_price = spot_price
